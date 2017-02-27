@@ -4,15 +4,26 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import {RouterModule} from "@angular/router";
+import {routes} from './app.routes';
+import { AboutComponent } from './about/about.component';
+import { HomeComponent } from './home/home.component';
+import {HomeResults} from "./home/home-results.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AboutComponent,
+    HomeComponent,
+    HomeResults
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(routes, {
+      useHash: true
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
