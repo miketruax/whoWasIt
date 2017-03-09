@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {HomeResults} from './home-results.component'
 import {MovieService} from '../movie-service.service'
+import {State} from "../reducers";
+import {Store} from "@ngrx/store";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -10,9 +13,9 @@ import {MovieService} from '../movie-service.service'
 })
 export class HomeComponent implements OnInit {
   private movies: Array<Object>;
-  public results: Array<Array<String>>;
-  constructor(private movieService: MovieService) {
-    this.results = [[]];
+  public actors: Observable<string[]>;
+  constructor(private movieService: MovieService, store: Store<State>) {
+    this.actors = store.select('actors');
     this.movies = [{movie: ''}];
   }
   addItem(){
@@ -26,6 +29,7 @@ export class HomeComponent implements OnInit {
   }
 
   search(){
+
     this.movieService.getMovies(this.movies);
   }
   ngOnInit() {

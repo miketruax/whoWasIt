@@ -9,6 +9,9 @@ import {routes} from './app.routes';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import {HomeResults} from "./home/home-results.component";
+import reducer from "./reducers";
+import {StoreModule} from "@ngrx/store";
+import {MovieService} from "./movie-service.service";
 
 @NgModule({
   declarations: [
@@ -23,9 +26,10 @@ import {HomeResults} from "./home/home-results.component";
     HttpModule,
     RouterModule.forRoot(routes, {
       useHash: true
-    })
+    }),
+    StoreModule.provideStore(reducer)
   ],
-  providers: [],
+  providers: [MovieService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

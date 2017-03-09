@@ -5,7 +5,7 @@ import {Component, OnInit, Input} from '@angular/core';
   templateUrl: './home-results.component.html',
 })
 export class HomeResults{
-  @Input() results: Array<Array<String>>;
+  @Input() results: Array<String>;
   @Input() movies: Array<Object>;
   constructor() {
   }
