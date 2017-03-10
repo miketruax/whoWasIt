@@ -1,7 +1,7 @@
 <div class="col-xs-12">
   <h2 class="text-center">Search by Movie:</h2>
   <div class="col-xs-12" *ngFor="let m of movies; let i= index;">
-    <input class="col-xs-8 col-xs-offset-1" type="text" [(ngModel)]="m.movie">
+    <input class="col-xs-8 col-xs-offset-1" type="text" [(ngModel)]=m.movie>
     <div class="col-xs-2"><span (click)="addItem()" class="glyphicon glyphicon-plus-sign cursor-pointer"></span>
     <span (click)="removeMovie(i)" class="glyphicon glyphicon-remove-circle cursor-pointer"></span></div>
   </div>

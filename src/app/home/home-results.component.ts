@@ -1,4 +1,5 @@
 import {Component, OnInit, Input, ChangeDetectionStrategy} from '@angular/core';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-home-results',
@@ -6,8 +7,8 @@ import {Component, OnInit, Input, ChangeDetectionStrategy} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeResults{
-  @Input() actors: string[];
-  @Input() movies: Array<String>;
+  @Input() actors: String[];
+  @Input() movies: Array<Object>;
   constructor() {
   }
 }
