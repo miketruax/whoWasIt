@@ -5,11 +5,19 @@ import {Injectable} from "@angular/core";
 
 @Injectable()
 export class ActorActions {
-  static CLEAR_ACTORS = '[Actors] Load Heroes';
-  clearActors(): Action {
+  static CLEAR_ACTORS = '[Actors] Clear Actors';
+  clearActors(number): Action {
     return {
-      type: ActorActions.CLEAR_ACTORS
+      type: ActorActions.CLEAR_ACTORS,
+      payload: number
     };
+  }
+
+  static COMBINE_ACTORS = '[Actors] Combine Actors';
+  combineActors(): Action {
+    return {
+      type: ActorActions.COMBINE_ACTORS
+    }
   }
 
   static SET_ACTORS = '[Actors] Set Actors';

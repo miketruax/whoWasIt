@@ -1,3 +1,8 @@
-<h1>Results</h1>
-<p *ngFor="let m of movies">{{m.movie}}</p>
-<p *ngFor="let a of actors">{{a}}</p>
+<div *ngIf="actors.movieNum ===0">
+  <h1>Actors who appeared in:</h1>
+  <h2 *ngFor="let m of movies">{{m.movie}}</h2>
+  <h3 *ngIf="actors.length ===0">No Actors in common according to OMDBApi. If you feel this is an error, feel free to contact them and help
+    update their data. You can find them <a href="http://www.omdbapi.com/" target="_blank">here</a>.
+  </h3>
+  <h3 *ngFor="let a of actors.actors">{{a}}</h3>
+</div>

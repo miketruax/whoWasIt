@@ -3,6 +3,8 @@ import {MovieService} from '../movie-service.service'
 import * as fromRoot from "../reducers";
 import {Store} from "@ngrx/store";
 import {Observable} from "rxjs";
+import {ActorActions} from "../actions/actor.actions";
+
 
 @Component({
   selector: 'app-home',
@@ -13,13 +15,12 @@ import {Observable} from "rxjs";
 export class HomeComponent implements OnInit {
   private movies: Array<Object>;
   private actors: Observable<String[]>;
-  constructor(private movieService: MovieService, store: Store<fromRoot.State>) {
+  constructor(private movieService: MovieService, private store: Store<fromRoot.State>) {
     this.actors = store.select('actors');
     this.movies = [{movie: ''}];
   }
   addItem(){
   this.movies.push({movie: ''});
-    console.log(this.movies);
   }
   removeMovie(index) {
     this.movies.splice(index, 1);
@@ -29,8 +30,8 @@ export class HomeComponent implements OnInit {
   }
 
   search(){
+    this.store.dispatch({type: ActorActions.CLEAR_ACTORS, payload: this.movies.length});
     this.movies.forEach((v,i, array)=>{
-      console.log(array[i]);
       this.movieService.getMovies(v['movie']);
     })
 

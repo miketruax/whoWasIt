@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeResults{
-  @Input() actors: String[];
+  @Input() actors: Object;
   @Input() movies: Array<Object>;
   constructor() {
   }
