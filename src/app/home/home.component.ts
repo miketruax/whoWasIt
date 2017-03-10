@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {HomeResults} from './home-results.component'
 import {MovieService} from '../movie-service.service'
-import {State} from "../reducers";
-import {Store} from "@ngrx/store";
+import * as fromRoot from "../reducers";
+import {Store, State} from "@ngrx/store";
 import {Observable} from "rxjs";
 
 @Component({
@@ -12,25 +12,29 @@ import {Observable} from "rxjs";
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  private movies: Array<Object>;
-  public actors: Observable<string[]>;
-  constructor(private movieService: MovieService, store: Store<State>) {
+  private movies: String[];
+  private actors: Observable<String[]>;
+  constructor(private movieService: MovieService, store: Store<fromRoot.State>) {
     this.actors = store.select('actors');
-    this.movies = [{movie: ''}];
+    this.movies = [''];
   }
   addItem(){
-  this.movies.push({movie: ''})
+  this.movies.push('')
+    console.log(this.movies);
   }
   removeMovie(index) {
     this.movies.splice(index, 1);
     if(this.movies.length <=0){
-      this.movies.push({movie: ''});
+      this.movies.push('');
     }
   }
 
   search(){
+    this.movies.forEach((v,i, array)=>{
+      console.log(array[i]);
+      this.movieService.getMovies(v);
+    })
 
-    this.movieService.getMovies(this.movies);
   }
   ngOnInit() {
   }

@@ -20,7 +20,7 @@ export class ActorActions {
     };
   }
 
-  static ADD_ACTORS = '[Actor] Add Actors';
+  static ADD_ACTORS = '[Actors] Add Actors';
   addActors(actors): Action {
     return {
       type: ActorActions.ADD_ACTORS,

@@ -10,7 +10,7 @@ import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import {HomeResults} from "./home/home-results.component";
 import reducer from "./reducers";
-import {StoreModule} from "@ngrx/store";
+import {StoreModule, provideStore} from "@ngrx/store";
 import {MovieService} from "./movie-service.service";
 
 @NgModule({

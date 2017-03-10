@@ -1,9 +1,11 @@
 import {
   combineReducers
 } from '@ngrx/store'
+import {createSelector} from 'reselect';
 
 import * as fromActors from './actors.reducer';
 import { ActionReducer } from '@ngrx/store';
+import {compose} from "@ngrx/core/compose";
 
 
 export interface State {
@@ -19,16 +21,14 @@ export interface State {
  * the result from right to left.
  */
 const reducers = {
-  actors: fromActors.reducer
+  actors: fromActors.default
 };
 
-const productionReducer: ActionReducer<State> = combineReducers(reducers);
 
-export function reducer(state: any, action: any) {
-    return productionReducer(state, action);
+export default compose(combineReducers)({
+  actors: reducers.actors
+});
 
-}
 
-export default (state: any, action: any) => {
-  return productionReducer
-}
+export const getActorsState = (state: State) => state.actors;
+
