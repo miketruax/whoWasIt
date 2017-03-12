@@ -21,6 +21,7 @@ export default
          return state
         }
         else{
+          console.log(state);
           let dupl = state['actors'].reduce(function(dupl, v, i, arr) {
             if (arr.indexOf(v, i + 1) !== -1 && dupl.indexOf(v) === -1) {
               dupl.push(v);

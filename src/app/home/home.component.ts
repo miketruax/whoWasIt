@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   private actors: Observable<String[]>;
   constructor(private movieService: MovieService, private store: Store<fromRoot.State>) {
     this.actors = store.select('actors');
-    this.movies = [{movie: ''}];
+    this.movies = [{movie: ''}, {movie: ''}];
   }
   addItem(){
   this.movies.push({movie: ''});

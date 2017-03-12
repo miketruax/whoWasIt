@@ -1,8 +1,15 @@
-<div *ngIf="actors.movieNum ===0">
-  <h1>Actors who appeared in:</h1>
-  <h2 *ngFor="let m of movies">{{m.movie}}</h2>
-  <h3 *ngIf="actors.length ===0">No Actors in common according to OMDBApi. If you feel this is an error, feel free to contact them and help
-    update their data. You can find them <a href="http://www.omdbapi.com/" target="_blank">here</a>.
+<div *ngIf="actors.movieNum === 0">
+  <h2>{{actors.actors.length >1 ? 'Actors' : 'Actor'}} who appeared in:</h2>
+  <h3 class="text-centered">
+    <span *ngFor="let m of movies; let i = index">
+      {{movies.length -1 === i ? 'and' : ''}}
+    {{m.movie}}{{movies.length-1 !== i && movies.length >2 ? ',': ''}}
+    </span>
   </h3>
-  <h3 *ngFor="let a of actors.actors">{{a}}</h3>
+  <h5 *ngIf="actors['actors'].length <=0 || actors.actors[0] === undefined">No Actors in common according to OMDBApi. If you feel this is an error, feel free to contact them and help
+    update their data. You can find them <a href="http://www.omdbapi.com/" target="_blank">here</a>.
+  </h5>
+  <ul class="list-group" *ngIf="actors['actors'].length >0 && actors.actors[0] !== undefined">
+    <li class="list-group-item" *ngFor="let a of actors.actors">{{a}}</li>
+  </ul>
 </div>

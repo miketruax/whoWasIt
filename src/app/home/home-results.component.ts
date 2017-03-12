@@ -11,4 +11,7 @@ export class HomeResults{
   @Input() movies: Array<Object>;
   constructor() {
   }
+  display(){
+  console.log(this.actors);
+ }
 }

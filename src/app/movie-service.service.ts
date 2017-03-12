@@ -14,11 +14,16 @@ export class MovieService {
   }
     getMovies(movie: String){
           this.http.get('http://www.omdbapi.com/?t=' + movie + '&y=&plot=short&r=json')
-            .map(res =>
-              res.json()['Actors'].split(', ')
-            )
+            .map(res => res.json())
+            .map(movie => {
+              console.log(movie);
+              if(movie['Actors']){
+                return movie['Actors'].split(', ')
+              }
+            })
             .map(payload => ({ type: ActorActions.ADD_ACTORS, payload }))
             .subscribe(action => {
+              console.log(action.payload);
               this.store.dispatch(action);
               this.store.dispatch({type: ActorActions.COMBINE_ACTORS});
             });

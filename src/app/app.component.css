@@ -1,0 +1,21 @@
+footer{
+  margin-top: 30px;
+  width: 100% !important;
+}
+footer div{
+  margin: auto;
+}
+header{
+  border-bottom: 2px solid black;
+  margin-bottom: 15px;
+  padding: 15px !important;
+}
+header h1{
+  font-size: 50px !important;
+}
+
+header h1, nav{
+  margin: 0 !important;
+}
+
+
