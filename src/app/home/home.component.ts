@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit {
   }
   clear(){
     this.tooFew = false;
+    this.movies = [{movie: ''}, {movie: ''}];
     this.store.dispatch({type: ActorActions.CLEAR_ACTORS, payload: -1})
   }
 
