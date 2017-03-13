@@ -14,9 +14,9 @@ import {ActorActions} from "../actions/actor.actions";
 })
 export class HomeComponent implements OnInit {
   private movies: Array<Object>;
-  private actors: Observable<String[]>;
+  private results: Observable<String[]>;
   constructor(private movieService: MovieService, private store: Store<fromRoot.State>) {
-    this.actors = store.select('actors');
+    this.results = store.select('results');
     this.movies = [{movie: ''}, {movie: ''}];
   }
   addItem(){

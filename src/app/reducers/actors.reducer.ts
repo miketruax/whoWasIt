@@ -4,31 +4,31 @@ import {forEach} from "@angular/router/src/utils/collection";
 
 export type State = Object
 
-const initialState: State = {actors: [], edited: false};
+const initialState: State = {actors: [], movieNum: 1, movies: []};
 
 
 export default
   function(state = initialState, action: Action): any{
     switch (action.type) {
       case actor.ActorActions.CLEAR_ACTORS: {
-        return {actors: [], movieNum: action.payload}
+        return {actors: [], movieNum: action.payload, movies: []}
       }
       case actor.ActorActions.ADD_ACTORS : {
-        return {actors: state['actors'].concat(action.payload), movieNum: state['movieNum']-1}
+        return {actors: state['actors'].concat(action.payload.actors), movieNum: state['movieNum']-1, movies: state['movies'].concat(action.payload.movies)}
       }
       case actor.ActorActions.COMBINE_ACTORS : {
         if(state['movieNum'] >0){
          return state
         }
         else{
-          console.log(state);
           let dupl = state['actors'].reduce(function(dupl, v, i, arr) {
             if (arr.indexOf(v, i + 1) !== -1 && dupl.indexOf(v) === -1) {
               dupl.push(v);
             }
             return dupl;
           }, []);
-          return {actors: dupl, movieNum: state['movieNum']}
+          console.log(state);
+          return {actors: dupl, movieNum: state['movieNum'], movies: state['movies']}
         }
 
       }

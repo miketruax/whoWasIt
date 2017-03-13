@@ -1,15 +1,24 @@
-<div *ngIf="actors.movieNum === 0">
-  <h2>{{actors.actors.length >1 ? 'Actors' : 'Actor'}} who appeared in:</h2>
-  <h3 class="text-centered">
-    <span *ngFor="let m of movies; let i = index">
-      {{movies.length -1 === i ? 'and' : ''}}
-    {{m.movie}}{{movies.length-1 !== i && movies.length >2 ? ',': ''}}
-    </span>
-  </h3>
-  <h5 *ngIf="actors['actors'].length <=0 || actors.actors[0] === undefined">No Actors in common according to OMDBApi. If you feel this is an error, feel free to contact them and help
-    update their data. You can find them <a href="http://www.omdbapi.com/" target="_blank">here</a>.
+<div *ngIf="results.movieNum === 0">
+  <h2>{{results.actors.length >1 ? 'Actors' : 'Actor'}} who appeared in the all of your chosen movies:</h2>
+  <h5 class="text-centered">
+    <div>
+      <div>
+        <ng-container *ngFor="let m of results.movies; let i = index">
+          <div *ngIf="!m.valid && m.title">
+            {{m.title}} ignored, {{m.msg}}
+          </div>
+          <div *ngIf="m.title === ''">
+            Title field number {{i+1}} ignored, it was left blank.
+          </div>
+        </ng-container>
+      </div>
+    </div>
   </h5>
-  <ul class="list-group" *ngIf="actors['actors'].length >0 && actors.actors[0] !== undefined">
-    <li class="list-group-item" *ngFor="let a of actors.actors">{{a}}</li>
+
+  <h4 *ngIf="results['actors'].length <=0 || results.actors[0] === undefined">No Actors in common according to OMDBApi. If you feel this is an error, feel free to contact them and help
+    update their data. You can find them <a href="http://www.omdbapi.com/" target="_blank">here</a>.
+  </h4>
+  <ul class="list-group" *ngIf="results['actors'].length >0 && results.actors[0] !== undefined">
+    <li class="list-group-item" *ngFor="let a of results.actors">{{a}}</li>
   </ul>
 </div>

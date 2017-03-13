@@ -9,7 +9,7 @@ import {compose} from "@ngrx/core/compose";
 
 
 export interface State {
-  actors: fromActors.State;
+  results: fromActors.State;
 }
 
 
@@ -21,14 +21,14 @@ export interface State {
  * the result from right to left.
  */
 const reducers = {
-  actors: fromActors.default
+  results: fromActors.default
 };
 
 
 export default compose(combineReducers)({
-  actors: reducers.actors
+  results: reducers.results
 });
 
 
-export const getActorsState = (state: State) => state.actors;
+export const getActorsState = (state: State) => state.results;
 

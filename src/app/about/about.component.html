@@ -2,9 +2,23 @@
   A simple app to help you remember the actor's name in a couple movies. As soon as I can find a good open API option,
   there will be implementation to find a movie based off actor's in it. Currently limited by the information from OMDBApi in that not all actors are populated and IMDB does not allow scraping,
   otherwise that would be the best option.
+
+  <h3>Limitations:</h3>
+  <ul class="list-group">
+    <li class="list-group-item">Only top four actors populated in OMDB Database which can result in ignored potential results.</li>
+    <li class="list-group-item">Several popular movie titles are missing actor information. Current work around is to ignore titles that have no actor information</li>
+    <li class="list-group-item">Currently does not verify movie exists prior to compiling actor information. In a live app this would be done as a check before accessing
+    the store/reducer. Currently non-existent movies are ignored to improve search speed as this is a "proof of concept" type app.
+    </li>
+    <li class="list-group-item">
+      No typo checks or suggestions for movies. i.e. "Clear and Presnt Danger" returns nothing due to typo in 'Present'. This is part of the reason
+      movies with no result from OMDB database are ignored.
+    </li>
+  </ul>
+
 </div>
 <div class="col-xs-12">
-  <h2> Technologies Used:</h2>
+  <h3> Technologies Used:</h3>
   <ul class="list-group">
     <li class="list-group-item">Angular 2 (via Angular CLI for ease of scaffolding)</li>
     <li class="list-group-item">Bootstrap CSS/JavaScript for easier design.</li>

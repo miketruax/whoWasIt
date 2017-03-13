@@ -1,8 +1,9 @@
 <div class="col-xs-12">
-  <h4 class="text-center">Search by Movie:</h4>
-  <h5 class="text-center"> Enter two or more movies and see what actors appeared in all of them (if any do).</h5>
+  <h3 class="text-center">Search by Movie:</h3>
+  <h4 class="text-center"> Enter two or more movies and see what actors appeared in all of them (if any do).</h4>
+  <h5 class="text-center">(See the about section for current limitations)</h5>
   <div class="col-xs-12" *ngFor="let m of movies; let i= index;">
-    <input class="col-xs-8 col-xs-offset-2" type="text" [(ngModel)]=m.movie>
+    <input placeholder="Enter a movie title" class="col-xs-8 col-xs-offset-2" type="text" [(ngModel)]=m.movie>
     <div class="col-xs-2"><span (click)="addItem()" class="glyphicon glyphicon-plus-sign cursor-pointer"></span>
     <span *ngIf="movies.length >2" (click)="removeMovie(i)" class="glyphicon glyphicon-remove-circle cursor-pointer"></span></div>
   </div>
@@ -12,7 +13,7 @@
 </div>
 
 <div class="col-xs-12">
-  <app-home-results [actors]="actors | async" [movies]="movies">
+  <app-home-results [results]="results | async">
 
   </app-home-results>
 

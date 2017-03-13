@@ -1,3 +1,4 @@
 export interface AppStore {
-  actors: string[];
+  results: Object;
+  movies: Object[];
 }
