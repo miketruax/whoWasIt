@@ -9,7 +9,11 @@
   </div>
 </div>
 <div class="col-xs-12">
-  <button class="btn btn-default col-xs-4 col-xs-offset-5" (click)="search()">Submit</button>
+  <button class="btn btn-default col-xs-3 col-xs-offset-2" (click)="clear()">Clear</button>
+  <button class="btn btn-default col-xs-4 col-xs-offset-1" (click)="search()">Submit</button>
+</div>
+<div *ngIf="tooFew" class="alert alert-danger col-xs-8 col-xs-offset-2">
+  <strong>Error!</strong> Please ensure at least two title fields are not blank.
 </div>
 
 <div class="col-xs-12">

@@ -8,7 +8,7 @@
             {{m.title}} ignored, {{m.msg}}
           </div>
           <div *ngIf="m.title === ''">
-            Title field number {{i+1}} ignored, it was left blank.
+            A title was ignored, the field was left blank.
           </div>
         </ng-container>
       </div>
@@ -21,4 +21,8 @@
   <ul class="list-group" *ngIf="results['actors'].length >0 && results.actors[0] !== undefined">
     <li class="list-group-item" *ngFor="let a of results.actors">{{a}}</li>
   </ul>
+</div>
+<div *ngIf="results.movieNum > 0">
+  <h2 class="text-center">Loading Results...</h2>
+
 </div>

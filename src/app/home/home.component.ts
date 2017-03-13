@@ -15,7 +15,9 @@ import {ActorActions} from "../actions/actor.actions";
 export class HomeComponent implements OnInit {
   private movies: Array<Object>;
   private results: Observable<String[]>;
+  private tooFew: boolean;
   constructor(private movieService: MovieService, private store: Store<fromRoot.State>) {
+    this.tooFew = false;
     this.results = store.select('results');
     this.movies = [{movie: ''}, {movie: ''}];
   }
@@ -30,11 +32,33 @@ export class HomeComponent implements OnInit {
   }
 
   search(){
-    this.store.dispatch({type: ActorActions.CLEAR_ACTORS, payload: this.movies.length});
-    this.movies.forEach((v,i, array)=>{
-      this.movieService.getMovies(v['movie']);
-    })
+    this.tooFew = false;
+    this.blankClearer();
+    if(!this.tooFew) {
+      this.store.dispatch({type: ActorActions.CLEAR_ACTORS, payload: this.movies.length});
+      this.movies.forEach((v, i, array) => {
+        this.movieService.getMovies(v['movie']);
+      })
+    }
+  }
+  clear(){
+    this.tooFew = false;
+    this.store.dispatch({type: ActorActions.CLEAR_ACTORS, payload: -1})
+  }
 
+  blankClearer(){
+    let returnList = [];
+    let l = this.movies.length;
+    this.movies.forEach((v, i, array)=>{
+      if(v['movie']){
+        returnList.push(v);
+      }
+    });
+    if (returnList.length <2) {
+      this.tooFew = true;
+      returnList.length === 1 ? returnList.push({movie: ''}) : returnList.push({movie: ''}, {movie: ''});
+    }
+    this.movies = returnList.slice();
   }
   ngOnInit() {
   }

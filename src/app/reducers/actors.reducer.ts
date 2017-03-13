@@ -4,7 +4,7 @@ import {forEach} from "@angular/router/src/utils/collection";
 
 export type State = Object
 
-const initialState: State = {actors: [], movieNum: 1, movies: []};
+const initialState: State = {actors: [], movieNum: -1, movies: []};
 
 
 export default
