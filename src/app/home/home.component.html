@@ -3,12 +3,13 @@
   <h4 class="text-center"> Enter two or more movies and see what actors appeared in all of them (if any do).</h4>
   <h5 class="text-center">(See the about section for current limitations)</h5>
   <div class="col-xs-12" *ngFor="let m of movies; let i= index;">
-    <input placeholder="Enter a movie title" class="col-xs-8 col-xs-offset-2" type="text" [(ngModel)]=m.movie>
-    <div class="col-xs-2"><span (click)="addItem()" class="pointer glyphicon glyphicon-plus-sign"></span>
+    <input placeholder="Movie Title" class="col-xs-6" type="text" [(ngModel)]=m.movie.title>
+    <input placeholder="Year" class="col-xs-2 col-xs-offset-1" type="text" [(ngModel)]=m.movie.year>
+    <div class="col-xs-3 add-remove"><span (click)="addItem()" class="pointer glyphicon glyphicon-plus-sign"></span>
     <span *ngIf="movies.length >2" (click)="removeMovie(i)" class="pointer glyphicon glyphicon-remove-circle"></span></div>
   </div>
 </div>
-<div class="col-xs-12">
+<div class="col-xs-12 buttons">
   <button class="btn btn-default col-xs-3 col-xs-offset-2" (click)="clear()">Clear</button>
   <button class="btn btn-default col-xs-4 col-xs-offset-1" (click)="search()">Submit</button>
 </div>

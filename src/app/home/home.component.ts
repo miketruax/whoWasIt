@@ -11,11 +11,11 @@ import {State} from "../reducers/index";
   selector: 'app-home',
   providers: [MovieService],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
   //Initializes elements movie as two blank elements, tooFew (movies searched for) as false, results as observable
-  private movies: Array<Object> = [{movie: ''}, {movie: ''}];
+  private movies: Array<Object> = [{movie: {'title' :'', 'year': ''}}, {movie: {'title' :'', 'year': ''}}];
   private results: Observable<String[]>;
   private tooFew: boolean = false;
   constructor(private movieService: MovieService, private store: Store<fromRoot.State>) {
@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
     if(!this.tooFew) {
       this.store.dispatch({type: ActorActions.CLEAR_ACTORS, payload: this.movies.length});
       this.movies.forEach((v, i, array) => {
-        this.movieService.getMovies(v['movie']);
+        this.movieService.compareMovies(v['movie']['title'], v['movie']['year']);
       })
     }
   }
@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
     //Then pushes one or two blank movies to the array depending on length, resetting it to requisite two
     if (this.movies.length <2) {
       this.tooFew = true;
-      this.movies.length === 1 ? this.movies.push({movie: ''}) : this.movies.push({movie: ''}, {movie: ''});
+      this.movies.length === 1 ? this.movies.push({movie: {'title' :'', 'year': ''}}) : this.movies.push({movie: {'title' :'', 'year': ''}}, {movie: {'title' :'', 'year': ''}});
     }
   }
 
